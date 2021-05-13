@@ -3,7 +3,7 @@ BPM Flow
 =======================
 **Note:** the **master** is the current development line and maybe not stable.<br> 
 For stable versions check:<br> 
-https://github.com/brunobuzzi/BpmFlow/releases
+https://github.com/JupiterSmalltalk/BpmFlow/releases
 
 An **Open Source** implementation of **BPM** standart using **GemStone/S**, **Orbeon**, **Bizagi** and **Highcharts**.<br>
 
