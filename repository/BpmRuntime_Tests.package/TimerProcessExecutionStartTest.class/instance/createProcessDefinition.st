@@ -6,8 +6,8 @@ createProcessDefinition
 			connectProcesses;
 			yourself.
 
-	processGenerator := BpmProcessGenerator on: xpdlReader xpdlPackages.
-	processGenerator mapProcess: 'timer-process-start' toApplication: (self getOrbeonApplicationClass getExistingBpmApplicationOrCreateNewNamed: 'ue');
+	processGenerator := BpmProcessGenerator on: xpdlReader xpdlPackages root: testRoot.
+	processGenerator mapProcess: 'timer-process-start' toApplication: (testRoot getExistingBpmApplicationOrCreateNewNamed: 'ue' in: 'env-ue');
 		generateAllProcess.
 
 	processGenerator processesDo: [:each | each addToCache].

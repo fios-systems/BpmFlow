@@ -6,7 +6,7 @@ setUp
 
 	self createUeEnvironmentAndApplication. "create the <BpmEnvironment> and <OrbeonApplication>"
 
-	procDefinition := self defaultProcessDefinitionClass getAllProcessesNamed: 'timer-process-start' in: 'ue'. "answer a collection with all versions"
+	procDefinition := testRoot getAllProcessesNamed: 'timer-process-start' in: 'ue'. "answer a collection with all versions"
 	
 	procDefinition := procDefinition ifEmpty: [self createProcessDefinition] ifNotEmpty: [:collection | collection last].
 	environment := procDefinition bpmEnvironment.
@@ -15,4 +15,4 @@ setUp
 
 	self grantUsers: {'andrew vm' -> 'executer'} in: 'ue'.
 
-	self defaultTimerEventMonitor startMonitoringProcessCreation: procDefinition.
+	testRoot startMonitoringProcessCreation: procDefinition.

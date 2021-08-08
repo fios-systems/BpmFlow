@@ -9,12 +9,12 @@ setUp
 			connectProcesses;
 			yourself.
 
-	processGenerator := BpmProcessGenerator on: reader xpdlPackages.
+	processGenerator := BpmProcessGenerator on: reader xpdlPackages root: testRoot.
 
 	processGenerator 
-		mapProcess: 'ReusableEmbeddedProc' toApplication: (self defaultApplicationManagerClass getExistingBpmApplicationOrCreateNewNamed: self defaultApplicationName);
-		mapProcess: 'reusable-sub-proc' toApplication: (self defaultApplicationManagerClass getExistingBpmApplicationOrCreateNewNamed: self defaultApplicationName);
-		mapProcess: 'reusable-sub-proc' toApplication: (self defaultApplicationManagerClass getExistingBpmApplicationOrCreateNewNamed: self defaultApplicationName);
+		mapProcess: 'ReusableEmbeddedProc' toApplication: (testRoot getExistingBpmApplicationOrCreateNewNamed: self defaultApplicationName);
+		mapProcess: 'reusable-sub-proc' toApplication: (testRoot getExistingBpmApplicationOrCreateNewNamed: self defaultApplicationName);
+		mapProcess: 'reusable-sub-proc' toApplication: (testRoot getExistingBpmApplicationOrCreateNewNamed: self defaultApplicationName);
 		generateAllProcess.
 
 	^processGenerator

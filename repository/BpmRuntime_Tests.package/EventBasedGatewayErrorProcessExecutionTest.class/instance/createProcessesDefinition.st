@@ -6,10 +6,10 @@ createProcessesDefinition
 			connectProcesses;
 			yourself.
 
-	processGenerator := BpmProcessGenerator on: xpdlReader xpdlPackages.
+	processGenerator := BpmProcessGenerator on: xpdlReader xpdlPackages root: testRoot.
 	processGenerator 
-		mapProcess: 'House Purchase with Send Error' toApplication: (self getOrbeonApplicationClass getExistingBpmApplicationOrCreateNewNamed: 'ue');
-		mapProcess: 'House Purchase with Loan' toApplication: (self getOrbeonApplicationClass getExistingBpmApplicationOrCreateNewNamed: 'ue');
+		mapProcess: 'House Purchase with Send Error' toApplication: (testRoot getExistingBpmApplicationOrCreateNewNamed: 'ue' in: 'env-ue');
+		mapProcess: 'House Purchase with Loan' toApplication: (testRoot getExistingBpmApplicationOrCreateNewNamed: 'ue' in: 'env-ue');
 		generateAllProcess.
 
 	processGenerator processesDo: [:each | each addToCache].

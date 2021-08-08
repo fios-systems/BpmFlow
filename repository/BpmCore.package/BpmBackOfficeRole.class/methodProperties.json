@@ -1,10 +1,12 @@
 {
 	"class" : {
-		"getRoleNamed:in:" : "brunobb 02/04/2020 08:24" },
+		"getRoleNamed:in:" : "brunobb 02/04/2020 08:24",
+		"isBackofficeRole" : "brunobb 08/02/2021 14:59" },
 	"instance" : {
 		"asBackofficeRole" : "brunobb 03/25/2019 09:16",
-		"asFrontofficeRole" : "brunobb 03/25/2019 09:16",
+		"asFrontofficeRole" : "brunobb 07/16/2021 12:51",
 		"isBackofficeRole" : "brunobb 03/25/2019 09:16",
 		"isBackofficeUserAndAdmin" : "brunobb 03/25/2019 09:16",
-		"registerInApplication:" : "brunobb 02/04/2020 07:59",
+		"printRoleType" : "brunobb 07/15/2021 15:01",
+		"registerInApplication:" : "brunobb 07/06/2021 14:30",
 		"unregisterFromApplication:ifAbsent:" : "brunobb 02/04/2020 08:49" } }

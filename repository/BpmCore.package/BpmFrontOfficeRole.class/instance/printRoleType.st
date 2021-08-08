@@ -1,0 +1,4 @@
+other
+printRoleType
+
+	^'F'

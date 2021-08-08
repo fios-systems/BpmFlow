@@ -6,7 +6,7 @@ setUp
 
 	self createUeEnvironmentAndApplication. "create the <BpmEnvironment> and <OrbeonApplication>"
 
-	procDefinition := self defaultProcessDefinitionClass getAllProcessesNamed: 'visa-appliance' in: 'ue'. "answer a collection with all versions"
+	procDefinition := testRoot getAllProcessesNamed: 'visa-appliance' in: 'ue'. "answer a collection with all versions"
 
 	procDefinition := procDefinition ifEmpty: [self createProcessDefinition] ifNotEmpty: [:collection | collection last].
 	environment := procDefinition bpmEnvironment.
@@ -22,14 +22,14 @@ setUp
 			in: 'ue'.
 
 	"to test Execution Context"
-	(self defaultEnvironmentClass getExistingEnvironmentOrCreateNewNamed: 'env-ue') 
-		registerApplication: (self getOrbeonApplicationClass getExistingBpmApplicationOrCreateNewNamed: 'app-test') ifPresent: [] ifTaken: [];
-		registerApplication: (self getOrbeonApplicationClass getExistingBpmApplicationOrCreateNewNamed: 'app-test-2') ifPresent: [] ifTaken: [].
+	(testRoot getExistingEnvironmentOrCreateNewNamed: 'env-ue') 
+		registerApplication: (testRoot getExistingBpmApplicationOrCreateNewNamed: 'app-test' in: 'env-ue') ifPresent: [] ifTaken: [];
+		registerApplication: (testRoot getExistingBpmApplicationOrCreateNewNamed: 'app-test-2' in: 'env-ue') ifPresent: [] ifTaken: [].
 
-	self defaultFrontOfficeRoleClass createNewOrGetExisting: 'visa officer' in: 'app-test'.
-	self defaultFrontOfficeRoleClass createNewOrGetExisting: 'visa officer' in: 'app-test-2'.
-	self defaultFrontOfficeRoleClass createNewOrGetExisting: 'visa manager' in: 'app-test'.
-	self defaultFrontOfficeRoleClass createNewOrGetExisting: 'visa manager' in: 'app-test-2'.
+	testRoot createNewOrGetExistingFrontOfficeRole: 'visa officer' in: 'app-test'.
+	testRoot createNewOrGetExistingFrontOfficeRole: 'visa officer' in: 'app-test-2'.
+	testRoot createNewOrGetExistingFrontOfficeRole: 'visa manager' in: 'app-test'.
+	testRoot createNewOrGetExistingFrontOfficeRole: 'visa manager' in: 'app-test-2'.
 	self grantUsers: {'andrew vo' -> 'visa officer'.} in: 'app-test'.
 	self grantUsers: {'andrew vm' -> 'visa manager'.} in: 'app-test'.
 	self grantUsers: {'andrew vm' -> 'visa manager'.} in: 'app-test-2'.
