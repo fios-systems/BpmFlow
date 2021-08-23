@@ -1,15 +1,18 @@
 test
 testOrbeon604
-	| environment applications file1 currentVersion agesic formDefinition |
+	| environment applications file1 currentVersion agesic |
 
 	environment := self getDefaultEnvironment.
-	agesic := self getOrbeonApplicationClass getExistingBpmApplicationOrCreateNewNamed: 'agesic'.
-	self getDefaultEnvironment registerApplication: agesic.
+	agesic := testRoot getExistingOrbeonApplicationOrCreateNewNamed: 'agesic' in: 'env-test'.
 	applications := OrderedCollection with: agesic.
 
-	formDefinition := 	self formCreatorClass buildDefinitionFrom: self newDefinitionTemplate formDefinition_agesic_test_all_types_4 name: 'test' in: agesic.
+	testRoot
+			buildPublishedFormNamed: 'test'  
+			title: ''
+			withXml: self newDefinitionTemplate formDefinition_agesic_test_all_types_4 
+			in: agesic.
 
-	importProcess  := BpmXpdlImportProcess newForApplications: applications in: environment.
+	importProcess  := BpmXpdlImportProcess newForApplications: applications in: environment root: testRoot.
 
 	file1 := WAFile new contents: XPDLProcessDefinitionTemplate xpdlDefinition_orbeon_error_604; fileName: 'import-errors.xpdl'; yourself.
 
@@ -17,7 +20,7 @@ testOrbeon604
 		setApplicationName: 'agesic' atIndex: 1;
 		storeTemporaryXpdlFile: file1 atIndex: 1.
 
-	currentVersion := (self defaultProcessDefinitionClass getLatestProcessDefinitionNamed: 'orbeon form error' in: 'agesic') ifNil: [0] ifNotNil: [:proDef | proDef version].
+	currentVersion := (testRoot getLatestProcessDefinitionNamed: 'orbeon form error' in: 'agesic') ifNil: [0] ifNotNil: [:proDef | proDef version].
 	importProcess importBizagiFiles.
 
 	self assert: importProcess hasWarnings.	
@@ -27,6 +30,5 @@ testOrbeon604
 	self assert: (importProcess detectedItems allSatisfy: [:each | each code = 604]).
 
 	self getDefaultEnvironment unregisterApplication: agesic.
-	agesic 
-		resetDefinitionRegistry;
-		removeFromCache.
+
+	agesic resetDefinitionRegistry

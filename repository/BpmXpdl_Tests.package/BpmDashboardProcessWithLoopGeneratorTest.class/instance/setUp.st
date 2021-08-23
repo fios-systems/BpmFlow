@@ -8,10 +8,10 @@ setUp
 			connectProcesses;
 			yourself.
 
-	processGenerator := BpmProcessGenerator on: reader xpdlPackages.
+	processGenerator := BpmProcessGenerator on: reader xpdlPackages root: testRoot.
 
 	processGenerator 
-		mapProcess: 'dashboard-process-with-loop' toApplication: (self defaultApplicationManagerClass getExistingBpmApplicationOrCreateNewNamed: self defaultApplicationName);
+		mapProcess: 'dashboard-process-with-loop' toApplication: (testRoot getExistingBpmApplicationOrCreateNewNamed: self defaultApplicationName);
 		generateAllProcess.
 
 	^processGenerator

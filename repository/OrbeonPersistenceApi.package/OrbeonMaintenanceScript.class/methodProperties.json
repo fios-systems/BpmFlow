@@ -1,0 +1,20 @@
+{
+	"class" : {
+		"newOn:" : "brunobb 07/22/2021 14:59" },
+	"instance" : {
+		"attachmentStructureExistAt:" : "brunobb 07/22/2021 14:49",
+		"createEmptyAttachmentStructure" : "brunobb 07/22/2021 14:47",
+		"createEmptyAttachmentStructureAt:" : "brunobb 07/22/2021 14:47",
+		"deleteAllOSFiles" : "brunobb 07/22/2021 14:47",
+		"deleteAllOSFilesAt:" : "brunobb 07/22/2021 14:47",
+		"deleteUnusedFormInstanceOSFiles" : "brunobb 07/22/2021 14:47",
+		"deleteUnusedOSFiles:pathSelector:" : "brunobb 07/22/2021 14:48",
+		"deleteUnusedPublishedFormsOSFiles" : "brunobb 07/22/2021 14:48",
+		"deleteUnusedSavedFormsOSFiles" : "brunobb 07/22/2021 14:48",
+		"getDefinitionUsedAttachmentIDs" : "brunobb 07/22/2021 14:51",
+		"getInstanceDefinitionUsedAttachmentIDs" : "brunobb 07/22/2021 14:51",
+		"getInstancesUsedAttachmentIDs" : "brunobb 07/22/2021 14:51",
+		"physicallyRemoveFormInstances" : "brunobb 07/22/2021 14:54",
+		"physicallyRemovePublishedForms" : "brunobb 07/22/2021 14:54",
+		"physicallyRemoveSavedForms" : "brunobb 07/22/2021 14:54",
+		"setRoot:" : "brunobb 07/22/2021 14:50" } }

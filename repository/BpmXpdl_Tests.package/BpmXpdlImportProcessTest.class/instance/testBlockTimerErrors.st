@@ -6,7 +6,7 @@ testBlockTimerErrors
 	ue := self getDefaultApplication.
 	applications := OrderedCollection with: ue.
 
-	importProcess  := BpmXpdlImportProcess newForApplications: applications in: environment.
+	importProcess  := BpmXpdlImportProcess newForApplications: applications in: environment root: testRoot.
 
 	file1 := WAFile new contents: XPDLProcessDefinitionTemplate xpdlDefinition_timer_block_errors; fileName: 'import-errors.xpdl'; yourself.
 
@@ -14,7 +14,7 @@ testBlockTimerErrors
 		setApplicationName: 'import-test-app' atIndex: 1;
 		storeTemporaryXpdlFile: file1 atIndex: 1.
 
-	currentVersion := (self defaultProcessDefinitionClass getLatestProcessDefinitionNamed: 'Process 123' in: 'import-test-app') ifNil: [0] ifNotNil: [:proDef | proDef version].
+	currentVersion := (testRoot getLatestProcessDefinitionNamed: 'Process 123' in: 'import-test-app') ifNil: [0] ifNotNil: [:proDef | proDef version].
 	importProcess importBizagiFiles.
 
 	self assert: importProcess hasWarnings.	

@@ -6,10 +6,10 @@ testProcessWithLoop
 			connectProcesses;
 			yourself.
 
-	processGenerator := BpmProcessGenerator on: reader xpdlPackages.
+	processGenerator := BpmProcessGenerator on: reader xpdlPackages root: testRoot.
 
 	processGenerator 
-		mapProcess: 'dashboard-process-with-loop' toApplication: (self defaultApplicationManagerClass applicationNamed: 'import-test-app');
+		mapProcess: 'dashboard-process-with-loop' toApplication: (testRoot getExistingBpmApplicationOrCreateNewNamed: 'import-test-app' in: 'env-test');
 		generateAllProcess.
 
 	processDefinition := processGenerator getProcessDefinitionNamed: 'dashboard-process-with-loop' ifNone: [self assert: false].

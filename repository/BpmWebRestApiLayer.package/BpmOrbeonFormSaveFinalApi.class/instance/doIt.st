@@ -2,14 +2,14 @@ other
 doIt
 	| application definition instance |
 
-	application := self getOrbeonApplicationClass applicationNamed: appName ifNone: [^self signalNoApplicationException: appName].
+	application := systemRoot applicationNamed: appName ifNone: [^self signalNoApplicationException: appName].
 
 	definition := application getDefinitionNamed: formName withVersion: version ifNone: [^self signalNoFormException].
 
 	instance := definition getInstanceWithId: id ifNone: [definition getDraftWithId: id ifNone: [OrbeonFormInstance newFor: definition withId: id]].
 
 	"execute the audit options. if <xmlString> is nil --> is a new form"
-	(instance xmlString notNil and:[self getOrbeonWebServerConfiguration isInstanceAuditEnableFor: formName in: appName]) 
+	(instance xmlString notNil and:[systemRoot isInstanceAuditEnableFor: formName in: appName]) 
 	ifTrue: [self auditStorage addInstanceAudit: instance cloneForAudit].
 
 	instance xmlString: xmlString;

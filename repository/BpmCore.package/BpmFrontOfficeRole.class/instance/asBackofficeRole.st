@@ -1,7 +1,7 @@
 other
 asBackofficeRole
 
-	^self defaultBackOfficeRoleClass new
+	^self systemRoot newBackOfficeRole
 		name: name;
 		isAdmin: isAdmin;
 		application: application;

@@ -8,7 +8,7 @@ testReusableEmbeddedInvalid1
 	ue := self getDefaultApplication.
 	applications := OrderedCollection with: ue.
 
-	importProcess  := BpmXpdlImportProcess newForApplications: applications in: environment.
+	importProcess  := BpmXpdlImportProcess newForApplications: applications in: environment root: testRoot.
 
 	file1 := WAFile new contents: XPDLProcessDefinitionTemplate xpdlDefinition_ReusableEmbeddedProcInvalid1; fileName: 'reusable-invalid-main.xpdl'; yourself.
 	file2 := WAFile new contents: XPDLProcessDefinitionTemplate xpdlDefinition_reusable_sub_proc_invalid; fileName: 'reusable-invalid-subproc.xpdl'; yourself.
@@ -19,7 +19,7 @@ testReusableEmbeddedInvalid1
 		storeTemporaryXpdlFile: file1 atIndex: 1;
 		storeTemporaryXpdlFile: file2 atIndex: 2.
 
-	currentVersion := (self defaultProcessDefinitionClass getLatestProcessDefinitionNamed: 'ReusableEmbeddedProcInvalid1' in: 'import-test-app') ifNil: [0] ifNotNil: [:proDef | proDef version].
+	currentVersion := (testRoot getLatestProcessDefinitionNamed: 'ReusableEmbeddedProcInvalid1' in: 'import-test-app') ifNil: [0] ifNotNil: [:proDef | proDef version].
 	importProcess importBizagiFiles.
 
 	self assert: importProcess hasWarnings.	
