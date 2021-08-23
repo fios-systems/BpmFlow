@@ -7,9 +7,9 @@ createProcessDefinition
 			connectProcesses;
 			yourself.
 
-	processGenerator := BpmProcessGenerator on: xpdlReader xpdlPackages.
-	processGenerator mapProcess: 'dashboard-error-sub-proc' toApplication: (self getOrbeonApplicationClass getExistingBpmApplicationOrCreateNewNamed: 'ue');
-		mapProcess: 'form-process' toApplication: (self getOrbeonApplicationClass getExistingBpmApplicationOrCreateNewNamed: 'ue');
+	processGenerator := BpmProcessGenerator on: xpdlReader xpdlPackages root: testRoot.
+	processGenerator mapProcess: 'dashboard-error-sub-proc' toApplication: (testRoot getExistingBpmApplicationOrCreateNewNamed: 'ue' in: 'env-ue');
+		mapProcess: 'form-process' toApplication: (testRoot getExistingBpmApplicationOrCreateNewNamed: 'ue' in: 'env-ue');
 		generateAllProcess.
 
 	processGenerator processesDo: [:each | each addToCache].

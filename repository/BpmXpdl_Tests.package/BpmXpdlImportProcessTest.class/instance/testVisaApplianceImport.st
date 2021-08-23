@@ -6,7 +6,7 @@ testVisaApplianceImport
 	ue := self getDefaultApplication.
 	applications := OrderedCollection with: ue.
 
-	importProcess  := BpmXpdlImportProcess newForApplications: applications in: environment.
+	importProcess  := BpmXpdlImportProcess newForApplications: applications in: environment root: testRoot.
 
 	file1 := WAFile new contents: XPDLProcessDefinitionTemplate xpdlDefinition_visa_apply; fileName: 'visa-apply.xpdl'; yourself.
 	file2 := WAFile new contents: XPDLProcessDefinitionTemplate xpdlDefinition_home_office_check; fileName: 'home-office-check.xpdl'; yourself.
@@ -21,7 +21,7 @@ testVisaApplianceImport
 		storeTemporaryXpdlFile: file3 atIndex: 3.
 
 	self createOrbeonForms. "we create OrbeonFormInstance that create OrboenFormDefinitions first, if not --> the import process will fail"
-	currentVersion := (self defaultProcessDefinitionClass getLatestProcessDefinitionNamed: 'visa-appliance' in: 'import-test-app') ifNil: [0] ifNotNil: [:proDef | proDef version].
+	currentVersion := (testRoot getLatestProcessDefinitionNamed: 'visa-appliance' in: 'import-test-app') ifNil: [0] ifNotNil: [:proDef | proDef version].
 	importProcess importBizagiFiles.
 
 	self deny: importProcess hasWarnings.

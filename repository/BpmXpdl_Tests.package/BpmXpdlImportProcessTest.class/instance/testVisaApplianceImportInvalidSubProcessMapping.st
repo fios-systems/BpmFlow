@@ -6,7 +6,7 @@ testVisaApplianceImportInvalidSubProcessMapping
 	ue := self getDefaultApplication.
 	applications := OrderedCollection with: ue.
 
-	importProcess  := BpmXpdlImportProcess newForApplications: applications in: environment.
+	importProcess  := BpmXpdlImportProcess newForApplications: applications in: environment root: testRoot.
 
 	changedDocument := XMLDOMParser parse: XPDLProcessDefinitionTemplate xpdlDefinition_visa_apply.
 	changedXpdl := changedDocument allElementsDetect: [:each | (each attributeAt: 'Name') = 'home-office-check'].
@@ -25,7 +25,7 @@ testVisaApplianceImportInvalidSubProcessMapping
 		storeTemporaryXpdlFile: file3 atIndex: 3.
 
 	self createOrbeonForms. "we create OrbeonFormInstance that create OrboenFormDefinitions first, if not --> the import process will fail"
-	currentVersion := (self defaultProcessDefinitionClass getLatestProcessDefinitionNamed: 'visa-appliance' in: 'import-test-app') ifNil: [0] ifNotNil: [:proDef | proDef version].
+	currentVersion := (testRoot getLatestProcessDefinitionNamed: 'visa-appliance' in: 'import-test-app') ifNil: [0] ifNotNil: [:proDef | proDef version].
 	importProcess importBizagiFiles.
 
 	self assert: importProcess hasWarnings.

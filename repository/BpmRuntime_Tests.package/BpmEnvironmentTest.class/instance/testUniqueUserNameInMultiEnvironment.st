@@ -1,13 +1,12 @@
 test
 testUniqueUserNameInMultiEnvironment
-	| currentMode env1 newUser |
+	| env1 newUser |
 
-	currentMode := self defaultEnvironmentClass areUsersMultiEnvironment.
-	self defaultEnvironmentClass areUsersMultiEnvironment: true.
+	testRoot setUsersAsMultiEnvironment.
 
-	env1 := (self defaultEnvironmentClass newNamed: 'env1') addToCache.
+	env1 := testRoot getExistingEnvironmentOrCreateNewNamed: 'env1'.
 
-	newUser := self defaultBpmUserClass getExistingOrNewUserNamed: 'alfred'.
+	newUser := testRoot getExistingOrNewUserNamed: 'alfred'.
 	self assert: (newUser canBeAddedTo: env1).
 	self assert: (newUser username = 'alfred').
 	self deny: (env1 includesUserNamed: newUser username).
@@ -18,7 +17,5 @@ testUniqueUserNameInMultiEnvironment
 	env1 unregisterUser: newUser.
 	self deny: (env1 includesUserNamed: newUser username).
 
-	newUser removeFromCache.
-	env1 removeFromCache.
-
-	self defaultEnvironmentClass areUsersMultiEnvironment: currentMode.
+	testRoot unregisterUser: newUser.
+	testRoot unregisterEnvironment: env1.

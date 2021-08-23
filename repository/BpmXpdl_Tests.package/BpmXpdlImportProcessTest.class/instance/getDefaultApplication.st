@@ -1,4 +1,4 @@
 other
 getDefaultApplication
 
-	^self getOrbeonApplicationClass getExistingBpmApplicationOrCreateNewNamed: 'import-test-app'
+	^testRoot getExistingOrbeonApplicationOrCreateNewNamed: 'import-test-app' in: self getDefaultEnvironment name

@@ -1,0 +1,14 @@
+{
+	"category" : "BpmCore",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		"Default" ],
+	"commentStamp" : "",
+	"instvars" : [
+		"timersTimespan" ],
+	"name" : "GemStoneServerConfiguration",
+	"pools" : [
+		 ],
+	"super" : "ApplicationServerConfiguration",
+	"type" : "normal" }

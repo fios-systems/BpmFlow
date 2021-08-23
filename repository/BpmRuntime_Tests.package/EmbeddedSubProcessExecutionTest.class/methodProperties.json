@@ -2,9 +2,9 @@
 	"class" : {
 		 },
 	"instance" : {
-		"createProcessDefinition" : "brunobb 08/19/2020 04:46",
-		"setUp" : "brunobb 09/26/2019 04:21",
-		"tearDown" : "brunobb 02/26/2020 10:27",
+		"createProcessDefinition" : "brunobb 07/21/2021 14:20",
+		"setUp" : "brunobb 08/02/2021 15:01",
+		"tearDown" : "brunobb 07/16/2021 12:14",
 		"testExecuteProcess" : "brunobb 08/06/2020 11:42",
 		"testTransitionTreePossibleLoops" : "brunobb 07/31/2020 13:10",
 		"testTransitionTreePossiblePaths" : "brunobb 07/31/2020 13:08",

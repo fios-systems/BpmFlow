@@ -4,11 +4,11 @@
 	"instance" : {
 		"booleanValueForRol:" : "BrunoBB 03/15/2016 10:51",
 		"defaultNewUserPopupComponent" : "brunobb 02/18/2019 06:52",
-		"gitbookUrl" : "brunobb 07/13/2018 10:25",
+		"gitbookUrl" : "brunobb 08/19/2021 11:25",
 		"informUserAdded:" : "brunobb 02/04/2019 11:22",
 		"informUserAlreadyExist:" : "brunobb 02/04/2019 09:19",
 		"informUserWithEmptyPassword" : "brunobb 02/04/2019 09:24",
-		"initialize" : "brunobb 05/31/2019 12:59",
+		"initialize" : "brunobb 07/12/2021 09:55",
 		"initializeBatchedLists" : "BrunoBB 03/15/2016 10:51",
 		"initializeSewafTableForUsers" : "brunobb 01/28/2020 02:56",
 		"initializeSewafTableRolsOfUser" : "BrunoBB 06/13/2016 10:01",

@@ -3,8 +3,8 @@ testAndExecutionContext_3
 	| currentTask currentProcessMatrix finishedProcessMatrix processId |
 
 	procInstance := procDefinition createProcessInstance: (self getUserNamed: 'andrew vo').
-	procInstance addAndContextApplication: (self getOrbeonApplicationClass getExistingBpmApplicationOrCreateNewNamed: 'app-test');
-		addAndContextApplication: (self getOrbeonApplicationClass getExistingBpmApplicationOrCreateNewNamed: 'app-test-2').
+	procInstance addAndContextApplication: (testRoot getExistingBpmApplicationOrCreateNewNamed: 'app-test' in: 'env-ue');
+		addAndContextApplication: (testRoot getExistingBpmApplicationOrCreateNewNamed: 'app-test-2' in: 'env-ue').
 	procInstance triggerStartEventWith: (self getUserNamed: 'andrew vo'). "the process start - the execution context must added before the process starts"
 
 	self assert: (procInstance startEventName = 'visa apply start').
@@ -14,13 +14,13 @@ testAndExecutionContext_3
 
 	"Test Execution Context"
 	"andrew vo has a role in 'app-test' aaplication but it not has a role in 'app-test-2' --> it has NO access to <procInstance>  "
-	self assert: (((self getUserNamed: 'andrew vo') getAllAvailableTaskAssignmentsIn: (self defaultEnvironmentClass getExistingEnvironmentOrCreateNewNamed: 'env-ue')) select: [:each | each processId = procInstance id]) size
+	self assert: (((self getUserNamed: 'andrew vo') getAllAvailableTaskAssignmentsIn: (testRoot getExistingEnvironmentOrCreateNewNamed: 'env-ue')) select: [:each | each processId = procInstance id]) size
 			equals: 0.
-	self assert: (((self getUserNamed: 'clark') getAllAvailableTaskAssignmentsIn: (self defaultEnvironmentClass getExistingEnvironmentOrCreateNewNamed: 'env-ue')) select: [:each | each processId = procInstance id]) size
+	self assert: (((self getUserNamed: 'clark') getAllAvailableTaskAssignmentsIn: (testRoot getExistingEnvironmentOrCreateNewNamed: 'env-ue')) select: [:each | each processId = procInstance id]) size
 			equals: 0.
 
 	self grantUsers: {'andrew vo' -> 'visa officer'.} in: 'app-test-2'.
-	self assert: (((self getUserNamed: 'andrew vo') getAllAvailableTaskAssignmentsIn: (self defaultEnvironmentClass getExistingEnvironmentOrCreateNewNamed: 'env-ue')) select: [:each | each processId = procInstance id]) size
+	self assert: (((self getUserNamed: 'andrew vo') getAllAvailableTaskAssignmentsIn: (testRoot getExistingEnvironmentOrCreateNewNamed: 'env-ue')) select: [:each | each processId = procInstance id]) size
 			equals: 1.
 
 	"Step 1 - Form [citizen-appliance]"
@@ -32,4 +32,4 @@ testAndExecutionContext_3
 
 	self resumeAssignFromTask2AndTestProcess: procInstance.
 
-	(self defaultFrontOfficeRoleClass getRoleNamed: 'visa officer' in: 'app-test-2') ungrantUser: (self getUserNamed: 'andrew vo').
+	(testRoot getFrontOfficeRoleNamed: 'visa officer' in: 'app-test-2') ungrantUser: (self getUserNamed: 'andrew vo').
